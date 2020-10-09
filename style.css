@@ -252,3 +252,32 @@ html {
     cursor: pointer;
     border-bottom: 1px solid #837cdf;
 }
+
+/* BREAKPOINTS */
+@media only screen and (max-width: 970px) {
+    .bottom-container {
+        grid-template-columns: 1fr;
+        overflow: visible;
+    }
+
+    .cocktail-list {
+        max-height: 20rem;
+        margin-right: 0;
+    }
+
+    .cocktail-info {
+        height: 35rem;
+    }
+
+    .top-container {
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 1170px) {
+    .app {
+        height: 100%;
+        max-width: none;
+        border-radius: 0px;
+    }
+}
