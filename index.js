@@ -33,6 +33,9 @@ const renderCocktails = function () {
                 .then((response) => response.json())
                 .then((data) => (cocktail = data.drinks[0]))
                 .then(renderCocktail);
+
+            const cocktailInfoElement = document.getElementById('cocktailInfo');
+            cocktailInfoElement.scrollIntoView();
         });
 
         cocktailItemInfoContainer.appendChild(cocktailItemViewMore);
@@ -99,9 +102,9 @@ window.addEventListener('DOMContentLoaded', function () {
             .then(renderCocktail);
     });
 
+    let searchBar = document.getElementById('searchBar');
     let searchButton = document.getElementById('searchButton');
-    searchButton.addEventListener('click', function () {
-        let searchBar = document.getElementById('searchBar');
+    searchButton.addEventListener('click', function() {
         let searchBarText = searchBar.value;
         fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchBarText}`)
             .then((response) => response.json())
@@ -110,4 +113,16 @@ window.addEventListener('DOMContentLoaded', function () {
 
         searchBar.value = '';
     });
+
+    searchBar.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            let searchBarText = searchBar.value;
+        fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchBarText}`)
+            .then((response) => response.json())
+            .then((data) => (cocktails = data.drinks))
+            .then(renderCocktails);
+
+        searchBar.value = '';
+        }
+    })
 });
